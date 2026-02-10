@@ -1,0 +1,193 @@
+.match-scoreboard {
+  position: absolute;
+  bottom: 70px; /* Nằm trên warning banner (khoảng 50-60px chiều cao) */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  padding: 8px 16px;
+  border-radius: 8px;
+  animation: slideInBottom 0.4s ease-out;
+  /* Responsive sizing based on viewport */
+  font-size: clamp(10px, 1.2vw, 16px);
+  min-width: 280px;
+  max-width: 90%;
+}
+
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.match-scoreboard.hiding {
+  animation: slideOutBottom 0.4s ease-in forwards;
+}
+
+@keyframes slideOutBottom {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+.scoreboard-header {
+  display: none;
+}
+
+.scoreboard-content {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(12px, 1.4vw, 18px);
+}
+
+.fighter-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.match-info {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.match-label {
+  color: #ffffff;
+  font-size: clamp(11px, 1.3vw, 16px);
+  font-weight: 600;
+  text-shadow: 
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    1px 1px 3px rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.fighter-label {
+  font-size: clamp(10px, 1.2vw, 14px);
+  font-weight: 600;
+  text-shadow: 
+    0 0 3px rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.fighter-red .fighter-label {
+  color: #ff4757;
+}
+
+.fighter-blue .fighter-label {
+  color: #000000;
+  font-weight: 700;
+  text-shadow: 
+    -2px -2px 0 rgba(255, 255, 255, 1),
+    2px -2px 0 rgba(255, 255, 255, 1),
+    -2px 2px 0 rgba(255, 255, 255, 1),
+    2px 2px 0 rgba(255, 255, 255, 1),
+    -1px -1px 0 rgba(255, 255, 255, 1),
+    1px -1px 0 rgba(255, 255, 255, 1),
+    -1px 1px 0 rgba(255, 255, 255, 1),
+    1px 1px 0 rgba(255, 255, 255, 1),
+    0 0 8px rgba(255, 255, 255, 1),
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 0 16px rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke: 2.5px rgba(255, 255, 255, 1);
+  paint-order: stroke fill;
+}
+
+.fighter-weight {
+  color: #ffffff;
+  font-size: clamp(12px, 1.5vw, 18px);
+  font-weight: 600;
+  text-shadow: 
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    1px 1px 3px rgba(0, 0, 0, 0.9);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.fighter-red .fighter-weight {
+  color: #ff4757;
+}
+
+.fighter-blue .fighter-weight {
+  color: #000000;
+  font-weight: 700;
+  text-shadow: 
+    -2px -2px 0 rgba(255, 255, 255, 1),
+    2px -2px 0 rgba(255, 255, 255, 1),
+    -2px 2px 0 rgba(255, 255, 255, 1),
+    2px 2px 0 rgba(255, 255, 255, 1),
+    -1px -1px 0 rgba(255, 255, 255, 1),
+    1px -1px 0 rgba(255, 255, 255, 1),
+    -1px 1px 0 rgba(255, 255, 255, 1),
+    1px 1px 0 rgba(255, 255, 255, 1),
+    0 0 10px rgba(255, 255, 255, 1),
+    0 0 14px rgba(255, 255, 255, 0.9),
+    0 0 18px rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 1);
+  paint-order: stroke fill;
+}
+
+
+/* Responsive design - Scale based on video container */
+@media (max-width: 768px) {
+  .match-scoreboard {
+    bottom: 65px; /* Nằm trên warning banner trên tablet */
+    padding: 6px 12px;
+    min-width: 240px;
+  }
+
+  .scoreboard-content {
+    gap: 8px;
+  }
+
+  .fighter-info {
+    gap: 4px;
+  }
+
+  .match-info {
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .match-scoreboard {
+    bottom: 60px; /* Nằm trên warning banner trên mobile */
+    padding: 5px 10px;
+    min-width: 200px;
+    max-width: 95%;
+  }
+
+  .scoreboard-content {
+    gap: 6px;
+  }
+
+  .fighter-info {
+    gap: 3px;
+  }
+
+  .match-info {
+    padding: 0 4px;
+  }
+}
