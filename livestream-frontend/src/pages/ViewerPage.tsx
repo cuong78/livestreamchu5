@@ -488,7 +488,7 @@ const ViewerPage = () => {
             </div>
 
             {/* Google Map Section */}
-            <div className="map-section">
+            {/* <div className="map-section">
               <h3 className="map-title">📍 Vị Trí Gà Chọi Chú 5</h3>
               <div className="address-display">
                 <p className="address-text">
@@ -522,7 +522,7 @@ const ViewerPage = () => {
                   />
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div className="contact-links">
               <Link to="/gioi-thieu" className="btn-contact-link">
@@ -535,7 +535,7 @@ const ViewerPage = () => {
           </div>
         </section>
 
-        {/* Branding Section - Thành Tích & Giải Thưởng */}
+        {/* Branding Section - Thành Tích & Giải Thưởng
         <section className="branding-section">
           <h2 className="section-title">🏆 Thành Tích & Giải Thưởng</h2>
           <div className="branding-container">
@@ -546,7 +546,7 @@ const ViewerPage = () => {
               loading="lazy"
             />
           </div>
-        </section>
+        </section> */}
 
         {/* Bank Info Section */}
         <section className="bank-section">
@@ -555,7 +555,7 @@ const ViewerPage = () => {
             <h3>Thông Tin Chuyển Khoản</h3>
             <div className="bank-details">
               <p>
-                <strong>agribank</strong>
+                <strong>AGRIBANK</strong>
               </p>
               <p>
                 Tên người nhận: <strong>LUU THI THU</strong>

@@ -23,8 +23,7 @@ services:
       - livestream-network
     restart: always
 
-  # RTMP Server (SRS - Simple Realtime Server)
-  # Using SRS v6.0 (Stable) - recommended version
+  # RTMP Server (SRS - Simple Realtime Server) v6
   srs:
     image: ossrs/srs:6
     container_name: livestream-srs
@@ -39,8 +38,6 @@ services:
       - livestream-network
     command: ./objs/srs -c conf/srs.conf
     restart: always
-    # Healthcheck removed - SRS container may not have curl installed
-    # Use docker logs to monitor instead
 
   # Spring Boot Backend
   backend:
@@ -54,9 +51,13 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
       SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
+      SPRING_REDIS_PASSWORD: ${SPRING_REDIS_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      JWT_REFRESH_EXPIRATION: ${JWT_REFRESH_EXPIRATION}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
-      STREAM_HLS_BASE_URL: ${VITE_HLS_BASE_URL}
+      STREAM_RTMP_URL: ${STREAM_RTMP_URL}
+      STREAM_HLS_BASE_URL: ${STREAM_HLS_BASE_URL}
       RECORDING_BASE_PATH: ${RECORDING_BASE_PATH}
       RECORDING_OUTPUT_PATH: ${RECORDING_OUTPUT_PATH}
       RECORDING_VIDEO_URL_BASE: ${RECORDING_VIDEO_URL_BASE}
