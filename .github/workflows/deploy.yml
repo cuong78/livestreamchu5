@@ -65,19 +65,6 @@ jobs:
             VITE_WS_URL=wss://gachoichu5.com/ws/chat
             VITE_HLS_BASE_URL=https://gachoichu5.com/live
 
-      - name: Test SSH Connection (Debug)
-        uses: appleboy/ssh-action@master
-        with:
-          host: 72.61.119.173
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          debug: true
-          script: |
-            echo "✅ SSH connection successful!"
-            echo "Current user: $(whoami)"
-            echo "Current directory: $(pwd)"
-            echo "Hostname: $(hostname)"
-
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
