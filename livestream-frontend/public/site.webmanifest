@@ -1,7 +1,7 @@
 {
-  "name": "Gà Chọi Chú 5 Phú Yên - Xổ Gà Trực Tiếp 18h Hàng Ngày",
+  "name": "Gà Chọi Chú 5 - Gà Chọi Chú 5 Phú Yên | Xổ Gà Trực Tiếp 18h Hàng Ngày",
   "short_name": "Gà Chọi Chú 5",
-  "description": "Gà Chọi Chú 5 Phú Yên - Chuyên xổ gà trực tiếp 18h hàng ngày tại Ngọc Lâm, Hòa Mỹ Tây, Tây Hòa, Phú Yên. Livestream vần xổ gà chọi chất lượng cao. Giao lưu mua bán gà chọi cao cấp đi các tỉnh. Hotline: 0368113370",
+  "description": "Gà Chọi Chú 5 - Trại gà chọi Chú 5 Phú Yên, chuyên xổ gà trực tiếp 18h hàng ngày tại Ngọc Lâm, Hòa Mỹ Tây, Tây Hòa, Phú Yên. Livestream vần xổ gà chọi chất lượng cao, giao lưu mua bán gà chọi cao cấp đi các tỉnh. Hotline: 0368113370",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -72,7 +72,7 @@
       "sizes": "1200x630",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Gà Chọi Chú 5 Phú Yên - Trang chủ"
+      "label": "Gà Chọi Chú 5 - Trang chủ"
     }
   ],
   "shortcuts": [
@@ -105,7 +105,7 @@
     {
       "name": "Giới Thiệu",
       "short_name": "Giới Thiệu",
-      "description": "Về Gà Chọi Chú 5 Phú Yên",
+      "description": "Về Gà Chọi Chú 5",
       "url": "/gioi-thieu",
       "icons": [
         {
