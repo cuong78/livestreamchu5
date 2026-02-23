@@ -124,7 +124,9 @@ ssh root@72.61.119.173
 apt update && apt upgrade -y
 
 # Cài đặt các công cụ cần thiết
-apt install -y git docker.io docker-compose-plugin nginx certbot python3-certbot-nginx ufw
+
+
+apt install -y git docker.io docker-compose nginx certbot python3-certbot-nginx ufw
 
 # Cấu hình tường lửa
 ufw allow ssh
@@ -612,10 +614,7 @@ ssh-keygen -t ed25519 -C "github-actions" -f ~/.ssh/github_actions_deploy
 # Copy public key lên VPS
 ssh-copy-id -i ~/.ssh/github_actions_deploy.pub root@72.61.119.173
 
-# Hoặc copy thủ công:
-cat ~/.ssh/github_actions_deploy.pub
-# Sau đó chạy trên VPS: echo "PUBLIC_KEY_CONTENT" >> ~/.ssh/authorized_keys
-```
+
 
 2. **Thêm Secrets vào GitHub Repository**:
    - Đi tới repository > **Settings** > **Secrets and variables** > **Actions**
