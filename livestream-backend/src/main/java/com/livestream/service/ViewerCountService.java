@@ -51,16 +51,29 @@ public class ViewerCountService {
     
     /**
      * Event listener for WebSocket disconnections
+     * Added 10-second delay before decreasing viewer count to handle temporary disconnections
      */
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
-        int count = viewerCount.decrementAndGet();
-        if (count < 0) {
-            viewerCount.set(0);
-            count = 0;
-        }
-        log.info("WebSocket disconnected. Current viewer count: {}", count);
-        broadcastViewerCount(count);
+        // Use a separate thread to handle disconnection with delay
+        new Thread(() -> {
+            try {
+                // Wait 10 seconds before processing disconnection
+                // This allows time for reconnection attempts
+                Thread.sleep(10000);
+                
+                int count = viewerCount.decrementAndGet();
+                if (count < 0) {
+                    viewerCount.set(0);
+                    count = 0;
+                }
+                log.info("WebSocket disconnected (after grace period). Current viewer count: {}", count);
+                broadcastViewerCount(count);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                log.warn("Disconnection handling interrupted", e);
+            }
+        }).start();
     }
     
     /**

@@ -87,12 +87,21 @@ const ViewerPage = () => {
 
   // Cập nhật viewer count khi có thay đổi về stream status hoặc real viewer count
   useEffect(() => {
-    if (stream?.status === "LIVE") {
-      setViewerCount(realViewerCount + 779);
-    } else {
-      // Khi stream OFFLINE: chỉ có viewer thực (nếu có)
-      setViewerCount(realViewerCount);
-    }
+    const calculateViewerCount = () => {
+      if (stream?.status === "LIVE") {
+        return realViewerCount + 779;
+      } else {
+        // Khi stream OFFLINE: chỉ có viewer thực (nếu có)
+        return realViewerCount;
+      }
+    };
+
+    // Sử dụng setTimeout để tránh thay đổi đột ngột gây hiệu ứng "tuột" mắt xem
+    const timer = setTimeout(() => {
+      setViewerCount(calculateViewerCount());
+    }, 1000); // Độ trễ 1 giây
+
+    return () => clearTimeout(timer);
   }, [stream?.status, realViewerCount]);
 
   useEffect(() => {

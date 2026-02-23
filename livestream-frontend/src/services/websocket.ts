@@ -28,7 +28,7 @@ export class WebSocketService {
       debug: (str) => {
         console.log("STOMP: " + str);
       },
-      reconnectDelay: 5000,
+      reconnectDelay: 3000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
     });
