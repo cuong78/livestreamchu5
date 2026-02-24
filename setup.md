@@ -66,7 +66,7 @@ Dự án của bạn bao gồm các thành phần chính:
 
 ## 🔑 Thông tin quan trọng
 
-- **VPS IP**: `72.61.119.173`
+- **VPS IP**: `76.13.212.30`
 - **Domain**: `gachoichu5.com`
 - **GitHub Repository**: Cần thay `YOUR_USERNAME` trong các lệnh
 - **Docker Registry**: `ghcr.io/YOUR_USERNAME/livestream`
@@ -77,11 +77,10 @@ Dự án của bạn bao gồm các thành phần chính:
 
 ```bash
 # Kết nối SSH vào server
-ssh root@72.61.119.173
+ssh root@76.13.212.30
 
 # 1. Dừng tất cả các container đang chạy
 cd /var/www/livestream
-docker compose -f docker-compose.prod.yml down -v 2>/dev/null || true
 docker-compose -f docker-compose.prod.yml down -v 2>/dev/null || true
 
 # 2. Xóa tất cả các container liên quan đến livestream
@@ -118,7 +117,7 @@ cd /var/www/livestream
 
 ```bash
 # Kết nối SSH vào server
-ssh root@72.61.119.173
+ssh root@76.13.212.30
 
 # Cập nhật hệ thống
 apt update && apt upgrade -y
@@ -502,7 +501,7 @@ EOL
 Kiểm tra và đảm bảo các thông tin sau đúng:
 
 1. **Repository name**: Đảm bảo `${{ github.repository }}` trỏ đúng repository của bạn
-2. **VPS IP**: Hiện tại là `72.61.119.173` (đã được cấu hình trong deploy.yml)
+2. **VPS IP**: Hiện tại là `76.13.212.30` (đã được cấu hình trong deploy.yml)
 3. **Secrets cần thiết**:
    - `TOKEN`: GitHub Personal Access Token với quyền `write:packages`
    - `SSH_PRIVATE_KEY`: Private SSH key để kết nối VPS
@@ -580,7 +579,7 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
-          host: 72.61.119.173
+          host: 76.13.212.30
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
@@ -594,10 +593,10 @@ jobs:
             export TAG=latest
 
             # Pull latest images
-            docker compose -f docker-compose.prod.yml pull
-
+            docker-compose -f docker-compose.prod.yml pull
+            
             # Restart services
-            docker compose -f docker-compose.prod.yml up -d
+            docker-compose -f docker-compose.prod.yml up -d
 
             # Clean up unused images
             docker image prune -af
@@ -612,7 +611,7 @@ ssh-keygen -t ed25519 -C "github-actions" -f ~/.ssh/github_actions_deploy
 # Không đặt passphrase để GitHub Actions có thể sử dụng
 
 # Copy public key lên VPS
-ssh-copy-id -i ~/.ssh/github_actions_deploy.pub root@72.61.119.173
+ssh-copy-id -i ~/.ssh/github_actions_deploy.pub root@76.13.212.30
 
 
 
@@ -655,7 +654,7 @@ git push origin main
 
 ```bash
 # SSH vào VPS
-ssh root@72.61.119.173
+ssh root@76.13.212.30
 
 cd /var/www/livestream
 
@@ -672,11 +671,11 @@ export TAG=latest
 echo "YOUR_GITHUB_TOKEN" | docker login ghcr.io -u YOUR_USERNAME --password-stdin
 
 # Pull và khởi động services
-docker compose -f docker-compose.prod.yml pull
-docker compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml pull
+docker-compose -f docker-compose.prod.yml up -d
 
 # Kiểm tra logs
-docker compose -f docker-compose.prod.yml logs -f
+docker-compose -f docker-compose.prod.yml logs -f
 ```
 
 ## Bước 8: Kiểm tra và giám sát
@@ -691,7 +690,7 @@ docker ps
 
 ```bash
 # Xem logs của tất cả các container
-docker compose -f docker-compose.prod.yml logs
+docker-compose -f docker-compose.prod.yml logs
 
 # Xem logs của một container cụ thể
 docker logs livestream-backend -f
@@ -761,8 +760,3 @@ docker logs livestream-srs
 - Tất cả các biến khác được định nghĩa trong file `.env`
 
 
-chạy các file sh 
-scp setup-utphuyen-domain.sh root@72.61.119.173:/root/
-ssh root@72.61.119.173
-chmod +x /root/setup-utphuyen-domain.sh
-/root/setup-utphuyen-domain.sh
